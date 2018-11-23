@@ -77,17 +77,6 @@ namespace ExcelLikeUI
                     components.Dispose();
                 }
             }
-            if (this._grid != null)
-            {
-                this._grid.CurrentCellMoved -= _grid_CurrentCellMoved;
-                this._grid.SelectionChanged -= _grid_SelectionChanged;
-                this._grid.VisibleChanged -= new EventHandler(_grid_VisibleChanged);
-            }
-            if (tabBarSplitterControl != null)
-            {
-                this.tabBarSplitterControl.TabBarPageAdding -= new TabBarPageAddingHandler(tabBarSplitterControl_TabBarPageAdding); this._grid.PrepareViewStyleInfo += _grid_PrepareViewStyleInfo;
-                this.tabBarSplitterControl.ActivePageChanged -= new ControlEventHandler(tabBarSplitterControl_ActivePageChanged);
-            }
             base.Dispose(disposing);
         }
         #endregion
@@ -134,7 +123,7 @@ namespace ExcelLikeUI
             this.tabBarSplitterControl.TabIndex = 0;
             this.tabBarSplitterControl.Text = "tabBarSplitterControl1";
             this.tabBarSplitterControl.ActivePageChanging += new System.Windows.Forms.ControlEventHandler(this.tabBarSplitterControl_ActivePageChanging);
-            this.tabBarSplitterControl.PaneCreated += new Syncfusion.Windows.Forms.SplitterPaneEventHandler(this.tabBarSplitterControl_PaneCreated);
+            
             // 
             // gridAwareTextBox1
             // 
@@ -238,8 +227,7 @@ namespace ExcelLikeUI
             this.Name = "WorkBook";
             this.Text = "Form2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Activated += new System.EventHandler(this.WorkBook_Activated);
-            this.Deactivate += new System.EventHandler(this.WorkBook_Deactivate);
+            
             this.tabBarSplitterControl.ResumeLayout(false);
             this.tabBarSplitterControl.PerformLayout();
             this.gridCMStrip.ResumeLayout(false);
@@ -255,7 +243,6 @@ namespace ExcelLikeUI
             # region Initial Settings
             this.tabBarSplitterControl.SuspendLayout();
             this.SuspendLayout();
-            this.tabBarSplitterControl.TabBarPageAdding += new TabBarPageAddingHandler(tabBarSplitterControl_TabBarPageAdding);
             TabBarPage tabBarPage = new TabBarPage();
             tabBarPage.TabBackColor = Color.FromArgb(219, 232, 249);
             GridControl _grid;
@@ -296,13 +283,9 @@ namespace ExcelLikeUI
             if (renderer is GridFormulaCellRenderer)
             {
                 GridFormulaCellRenderer textBoxRenderer = renderer as GridFormulaCellRenderer;
-                textBoxRenderer.TextBox.MouseUp += TextBox_MouseUp;
             }
 
 
-            this._grid.CurrentCellMoved += _grid_CurrentCellMoved;
-            this._grid.SelectionChanged += _grid_SelectionChanged;
-            this._grid.PrepareViewStyleInfo += _grid_PrepareViewStyleInfo;
             i++;
             this._grid.TableStyle.WrapText = false;
             this.tabBarSplitterControl.ResumeLayout(true);
@@ -351,7 +334,7 @@ namespace ExcelLikeUI
             _grid.ThemesEnabled = true;
 
 
-            this.tabBarSplitterControl.ActivePageChanged += new ControlEventHandler(tabBarSplitterControl_ActivePageChanged);
+            
             // 
             // tabBarPage
             // 
@@ -366,491 +349,11 @@ namespace ExcelLikeUI
             if (renderer is GridFormulaCellRenderer)
             {
                 GridFormulaCellRenderer textBoxRenderer = renderer as GridFormulaCellRenderer;
-                textBoxRenderer.TextBox.MouseUp += TextBox_MouseUp;
             }
             i++;
         }
         #endregion
-        
-        #region Methods
-        internal void Paste()
-        {
-            this._grid.Focus();
-            this._grid.Model.CutPaste.Paste();
-        }
-
-        internal void Cut()
-        {
-            this._grid.Focus();
-            this._grid.Model.CutPaste.Cut();
-        }
-
-        internal void Copy()
-        {
-            this._grid.Focus();
-            this._grid.Model.CutPaste.Copy();
-        }
-
-        internal void FontNameChanged(string fontName)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Font.Facename = fontName;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void FontSizeChanged(string fontSize)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Font.Size = Convert.ToInt64(fontSize);
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal float FontSizeIncrease()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Font.Size = this._grid[this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex].Font.Size;
-            style.Font.Size += 2;
-            if (this._grid.Selections.Ranges.Count != 0)
-            {
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            }
-            else
-            {
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-            }
-            return this._grid[this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex].Font.Size;
-        }
-
-        internal float FontSizeDecrease()
-        {
-            if (this._grid[this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex].Font.Size > 2)
-            {
-                GridStyleInfo style = new GridStyleInfo();
-                style.Font.Size = this._grid[this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex].Font.Size;
-                style.Font.Size -= 2;
-                if (this._grid.Selections.Ranges.Count != 0)
-                {
-                    this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-                }
-                else
-                {
-                    this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-                }
-            }
-            return this._grid[this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex].Font.Size;
-        }
-
-        internal void UnderLine(bool underLine)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (underLine)
-                style.Font.Underline = true;
-            else
-                style.Font.Underline = false;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void Italic(bool italic)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (italic)
-                style.Font.Italic = true;
-            else
-                style.Font.Italic = false;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void Bold(bool bold)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (bold)
-                style.Font.Bold = true;
-            else
-                style.Font.Bold = false;
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void TopBorder()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Borders.Top = new GridBorder(GridBorderStyle.Solid);
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(GridRangeInfo.Cells(
-                    this._grid.Selections.Ranges.ActiveRange.Top,
-                    this._grid.Selections.Ranges.ActiveRange.Left,
-                    this._grid.Selections.Ranges.ActiveRange.Top,
-                    this._grid.Selections.Ranges.ActiveRange.Right),
-                    style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void BottomBorder()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Borders.Bottom = new GridBorder(GridBorderStyle.Solid);
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(GridRangeInfo.Cells(
-                    this._grid.Selections.Ranges.ActiveRange.Bottom,
-                    this._grid.Selections.Ranges.ActiveRange.Left,
-                    this._grid.Selections.Ranges.ActiveRange.Bottom,
-                    this._grid.Selections.Ranges.ActiveRange.Right),
-                    style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void NoBorder()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Borders.All = new GridBorder(GridBorderStyle.Standard);
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void LeftBorder()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Borders.Left = new GridBorder(GridBorderStyle.Solid);
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(GridRangeInfo.Cells(
-                    this._grid.Selections.Ranges.ActiveRange.Top,
-                    this._grid.Selections.Ranges.ActiveRange.Left,
-                    this._grid.Selections.Ranges.ActiveRange.Bottom,
-                    this._grid.Selections.Ranges.ActiveRange.Left),
-                    style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void RightBorder()
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.Borders.Right = new GridBorder(GridBorderStyle.Solid);
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(GridRangeInfo.Cells(
-                    this._grid.Selections.Ranges.ActiveRange.Top,
-                    this._grid.Selections.Ranges.ActiveRange.Right,
-                    this._grid.Selections.Ranges.ActiveRange.Bottom,
-                    this._grid.Selections.Ranges.ActiveRange.Right),
-                    style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void WrapText(bool wrapText)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (wrapText)
-                style.WrapText = true;
-            else
-                style.WrapText = false;
-
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void MergeCells(bool merge)
-        {
-            if (merge)
-            {
-                if (this._grid.Selections.Ranges.Count != 0)
-                    this._grid.CoveredRanges.Add(this._grid.Selections.Ranges.ActiveRange);
-                else
-                    this._grid.CoveredRanges.Add(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex));
-                this._grid.CurrentCell.MoveTo(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex);
-            }
-            else
-            {
-                foreach (GridRangeInfo range in _grid.Model.CoveredRanges.Ranges)
-                {
-                    if (range.Top == _grid.CurrentCell.RowIndex && range.Left == _grid.CurrentCell.ColIndex)
-                    {
-                        this._grid.CoveredRanges.Remove(range);
-                        break;
-                    }
-                }
-            }
-        }
-
-        internal void TopAlign(bool topAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.VerticalAlignment = GridVerticalAlignment.Top;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void MiddleAlign(bool middleAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (middleAlign)
-                style.VerticalAlignment = GridVerticalAlignment.Middle;
-            else
-
-                style.VerticalAlignment = GridVerticalAlignment.Top;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void BottomAlign(bool bottomAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (bottomAlign)
-                style.VerticalAlignment = GridVerticalAlignment.Bottom;
-            else
-                style.VerticalAlignment = GridVerticalAlignment.Top;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void LeftAlign(bool leftAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.HorizontalAlignment = GridHorizontalAlignment.Left;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void RightAlign(bool rightAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (rightAlign)
-                style.HorizontalAlignment = GridHorizontalAlignment.Right;
-            else
-                style.HorizontalAlignment = GridHorizontalAlignment.Left;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void CenterAlign(bool centerAlign)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            if (centerAlign)
-                style.HorizontalAlignment = GridHorizontalAlignment.Center;
-            else
-                style.HorizontalAlignment = GridHorizontalAlignment.Left;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-        }
-
-        internal void PageLayout(bool pageLayout)
-        {
-            if (layoutHelper != null)
-                layoutHelper.ShowLayoutLines = pageLayout;
-        }
-
-        internal void ShowLines(bool showLines)
-        {
-            if (showLines)
-            {
-                _grid.DisplayHorizontalLines = true;
-                _grid.DisplayVerticalLines = true;
-            }
-            else
-            {
-                _grid.DisplayHorizontalLines = false;
-                _grid.DisplayVerticalLines = false;
-            }
-        }
-
-        internal void ShowRowHeader(bool showHeader)
-        {
-            if (showHeader)
-            {
-                _grid.ShowRowHeaders = true;
-                _grid.ShowColumnHeaders = true;
-            }
-            else
-            {
-                _grid.ShowRowHeaders = false;
-                _grid.ShowColumnHeaders = false;
-            }
-        }
-
-        internal void Freeze(bool freeze)
-        {
-            if (freeze)
-            {
-                this._grid.Cols.FrozenCount = this._grid.CurrentCell.ColIndex - 1;
-                this._grid.Rows.FrozenCount = this._grid.CurrentCell.RowIndex - 1;
-            }
-            else
-            {
-                this._grid.Cols.FrozenCount = 0;
-                this._grid.Rows.FrozenCount = 0;
-            }
-        }
-
-        internal void TextColorChanged(Color color)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.TextColor = color;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-
-        }
-
-        internal void BackColorChanged(Color color)
-        {
-            GridStyleInfo style = new GridStyleInfo();
-            style.BackColor = color;
-            if (this._grid.Selections.Ranges.Count != 0)
-                this._grid.ChangeCells(this._grid.Selections.Ranges.ActiveRange, style);
-            else
-                this._grid.ChangeCells(GridRangeInfo.Cell(this._grid.CurrentCell.RowIndex, this._grid.CurrentCell.ColIndex), style);
-
-        }
-
-        internal void RejectChanges()
-        {
-            this._grid.CurrentCell.Renderer.ControlText = "";
-        }
-
-        internal void AcceptChanges()
-        {
-            this._grid.CurrentCell.EndEdit();
-        }
-
-        //Register grids
-        internal void RegisterGrid()
-        {
-            foreach (TabBarPage page in this.tabBarSplitterControl.TabBarPages)
-            {
-                GridControl grid = null;
-                foreach (Control control in page.Controls)
-                    if (control is GridControl)
-                    {
-                        grid = control as GridControl;
-                        break;
-                    }
-                if (grid != null)
-                {
-                    GridFormulaEngine.RegisterGridAsSheet(page.Text, grid.Model, 1);
-                    grid.Model.Refresh();
-                }
-            }
-            foreach (TabBarPage page in this.HiddenSheets)
-            {
-                GridControl grid = null;
-                foreach (Control control in page.Controls)
-                    if (control is GridControl)
-                    {
-                        grid = control as GridControl;
-                        break;
-                    }
-                if (grid != null)
-                {
-                    GridFormulaEngine.RegisterGridAsSheet(page.Text, grid.Model, 1);
-                    grid.Model.Refresh();
-                }
-            }
-        }
-
-        internal void InvalidateFormulaCell()
-        {
-            GridRangeInfo range = new GridRangeInfo();
-            range = this._grid.RectangleToRangeInfo(this._grid.Bounds);
-            for (int r = range.Top; r < range.Bottom; r++)
-                for (int c = range.Left; c < range.Right; c++)
-                    if (this._grid[r, c].HasFormulaTag)
-                        this._grid[r, c].FormulaTag = null;
-        }
-        #endregion
-
         # region Menu Handlers
-        private void insertSheetMenuItem_Click(object sender, System.EventArgs e)
-        {
-            TabBarPage tabBarPage = new TabBarPage();
-            tabBarPage.TabBackColor = Color.FromArgb(219, 232, 249);
-            GridControl _grid = new GridControl();
-            int indx = this.tabBarSplitterControl.TabBarPages.IndexOf(this.tabBarSplitterControl.ActivePage);
-            int oIndx = this.tabBarSplitterControl.TabBarPages.Count + 1;
-
-            GridModel model = new GridModel();
-            SampleGrid.SetupGridModel(model);
-            _grid = new SampleGrid(model);
-            // 
-            // _grid
-            // 
-            _grid.ContextMenuStrip = gridCMStrip;
-            _grid.Location = new System.Drawing.Point(0, 0);
-            _grid.Name = string.Format("gridControl{0}", oIndx);
-            _grid.SmartSizeBox = false;
-            _grid.Text = string.Format("gridControl{0}", oIndx);
-            _grid.ThemesEnabled = false;
-
-            GridCellRendererBase renderer = this._grid.CellRenderers["FormulaCell"];
-            if (renderer is GridFormulaCellRenderer)
-            {
-                GridFormulaCellRenderer textBoxRenderer = renderer as GridFormulaCellRenderer;
-                textBoxRenderer.TextBox.MouseUp += TextBox_MouseUp;
-            }
-
-            // 
-            // tabBarPage
-            // 
-            tabBarPage.Controls.Add(_grid);
-            tabBarPage.Location = new System.Drawing.Point(0, 0);
-            tabBarPage.Name = string.Format("tabBarPage{0}", oIndx);
-            tabBarPage.SplitBars = Syncfusion.Windows.Forms.DynamicSplitBars.Both;
-            tabBarPage.Text = string.Format("Sheet{0}", oIndx);
-            tabBarPage.ThemesEnabled = true;
-            _grid.ThemesEnabled = false;
-            GridFormulaEngine.RegisterGridAsSheet(string.Format("Sheet{0}", oIndx), _grid.Model, 1);
-
-            this.tabBarSplitterControl.TabBarPages.Add(tabBarPage);
-        }
-
-        private void deleteSheetMenuItem_Click(object sender, System.EventArgs e)
-        {
-            if (this.tabBarSplitterControl.TabBarPages.Count > 1)
-            {
-                TabBarPage page = this.tabBarSplitterControl.ActivePage;
-                this.tabBarSplitterControl.ActivateNextPage(true);
-                this.tabBarSplitterControl.TabBarPages.Remove(page);
-            }
-        }
-
         private void HyperLinkMenuItem_Click(object sender, System.EventArgs e)
         {
             GridCurrentCell cc = this._grid.CurrentCell;
@@ -887,62 +390,6 @@ namespace ExcelLikeUI
 
         #region Events
 
-        void _grid_CurrentCellActivated(object sender, EventArgs e)
-        {
-            form.UpdateFontStyles(_grid);
-        }
-        
-        void _grid_CurrentCellMoved(object sender, GridCurrentCellMovedEventArgs e)
-        {
-            GridCurrentCell cc = this._grid.CurrentCell;
-            this._grid.RefreshRange(GridRangeInfo.Cell(0, cc.MoveFromColIndex));
-            this._grid.RefreshRange(GridRangeInfo.Cell(0, cc.MoveToColIndex));
-            this._grid.RefreshRange(GridRangeInfo.Cell(cc.MoveFromRowIndex, 0));
-            this._grid.RefreshRange(GridRangeInfo.Cell(cc.MoveToRowIndex, 0));
-        }
-
-        void _grid_PrepareViewStyleInfo(object sender, GridPrepareViewStyleInfoEventArgs e)
-        {
-            GridControl grid = (GridControl)sender;
-            GridCurrentCell cc = grid.CurrentCell;
-            if (grid.Selections.Ranges.Count != 0)
-            {
-                for (int i = 0; i < grid.Selections.Ranges.Count; i++)
-                {
-                    GridRangeInfo gri = grid.Selections.Ranges[i];
-                    if ((e.ColIndex >= gri.Left && e.ColIndex <= gri.Right && e.RowIndex == 0) ||
-                            (e.RowIndex >= gri.Top && e.RowIndex <= gri.Bottom && e.ColIndex == 0))
-                    {
-                        e.Style.BackColor = Color.LightBlue;
-                        break;
-                    }
-                }
-            }
-            else if (cc != null)
-            {
-                if ((e.ColIndex == cc.ColIndex && e.RowIndex == 0) || (e.RowIndex == cc.RowIndex && e.ColIndex == 0))
-                {
-                    e.Style.BackColor = Color.LightBlue;
-                }
-            }
-        }
-
-        void _grid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
-        {
-            if (sender is GridControl)
-            {
-                GridControl grid = (GridControl)sender;
-                grid.RefreshRange(GridRangeInfo.Row(0));
-                grid.RefreshRange(GridRangeInfo.Col(0));
-            }
-        }
-        
-        void tabBarSplitterControl_TabBarPageAdding(object sender, TabBarPageAddingEventArgs arg)
-        {
-            arg.Cancel = true;
-            AddNewWorkheet();
-        }
-
         private void tabBarSplitterControl_ActivePageChanging(object sender, System.Windows.Forms.ControlEventArgs e)
         {
             if (e.Control != null)
@@ -954,64 +401,8 @@ namespace ExcelLikeUI
                         break;
                     }
                 }
-            if (this._grid != null)
-            {
-                this.gridAwareTextBox1.WireGrid(this._grid);
-                this.gridAwareTextBox2.WireGrid(this._grid);
-                layoutHelper = new LayoutSupportHelper(this._grid);
-                this._grid.VisibleChanged += new EventHandler(_grid_VisibleChanged);
-            }
-        }
-        
-        private void tabBarSplitterControl_PaneCreated(object sender, Syncfusion.Windows.Forms.SplitterPaneEventArgs e)
-        {
-            this._grid = (GridControl)e.Control;
-            _grid.ContextMenuStrip = gridCMStrip;
-            GridCellRendererBase renderer = this._grid.CellRenderers["FormulaCell"];
-            if (renderer is GridFormulaCellRenderer)
-            {
-                GridFormulaCellRenderer textBoxRenderer = renderer as GridFormulaCellRenderer;
-                textBoxRenderer.TextBox.MouseUp += TextBox_MouseUp;
-            }
-
-            this.gridAwareTextBox1.WireGrid(this._grid);
-            this.gridAwareTextBox2.WireGrid(this._grid);
-            this._grid.VisibleChanged += new EventHandler(_grid_VisibleChanged);
-        }
-        
-        private void WorkBook_Activated(object sender, System.EventArgs e)
-        {
-            (this.MdiParent as Form1).workBook = this;
-            (this.MdiParent as Form1).gridAwareTextBoxItem1.WireGridAwareTextBox(this.gridAwareTextBox1, this._grid, true);
-            (this.MdiParent as Form1).gridAwareTextBoxItem2.WireGridAwareTextBox(this.gridAwareTextBox2, this._grid, false);
-            this.RegisterGrid();
         }
 
-        private void WorkBook_Deactivate(object sender, System.EventArgs e)
-        {
-            (this.MdiParent as Form1).workBook = null;
-        }
-
-        private void _grid_VisibleChanged(object sender, EventArgs e)
-        {
-            this.InvalidateFormulaCell();
-        }
-
-        private void tabBarSplitterControl_ActivePageChanged(object sender, ControlEventArgs e)
-        {
-            //Change the Formula Bar Text to reflect the current selection in the active page
-            TabBarPage page = this.tabBarSplitterControl.ActivePage;
-            if (page != null)
-            {
-                GridControl grid = null;
-
-                if (page.Controls.Count > 1 && page.Controls[1] is GridControl)
-                    grid = page.Controls[1] as GridControl;
-                GridCurrentCell cc = grid.CurrentCell;
-                this.gridAwareTextBox2.Text = grid[cc.RowIndex, cc.ColIndex].Text;
-                grid.CurrentCellActivated += _grid_CurrentCellActivated;
-            }
-        }
         #endregion
     }
 }

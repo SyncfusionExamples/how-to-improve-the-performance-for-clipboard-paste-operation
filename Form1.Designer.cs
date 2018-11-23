@@ -305,8 +305,8 @@ namespace ExcelLikeUI
             this.toolStripButton99 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton25 = new System.Windows.Forms.ToolStripButton();
             this.toolStripPanelItem28 = new Syncfusion.Windows.Forms.Tools.ToolStripPanelItem();
-            this.gridAwareTextBoxItem1 = new ExcelLikeUI.GridAwareTextBoxBarItem();
-            this.gridAwareTextBoxItem2 = new ExcelLikeUI.GridAwareTextBoxBarItem();
+            //this.gridAwareTextBoxItem1 = new ExcelLikeUI.GridAwareTextBoxBarItem();
+            //this.gridAwareTextBoxItem2 = new ExcelLikeUI.GridAwareTextBoxBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.excelRibbon)).BeginInit();
             this.excelRibbon.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
@@ -371,7 +371,7 @@ namespace ExcelLikeUI
             this.excelRibbon.Text = "ribbonControlAdv1";
             this.excelRibbon.TitleColor = System.Drawing.Color.Black;
             this.excelRibbon.UpdateUIOnAppIdle = true;
-            this.excelRibbon.MenuButtonDoubleClick += new System.EventHandler(this.excelRibbon_MenuButtonDoubleClick);
+           // this.excelRibbon.MenuButtonDoubleClick += new System.EventHandler(this.excelRibbon_MenuButtonDoubleClick);
             // 
             // toolStripTabItem1
             // 
@@ -726,7 +726,7 @@ namespace ExcelLikeUI
             this.noBorderToolStripButton5.Name = "noBorderToolStripButton5";
             this.noBorderToolStripButton5.Size = new System.Drawing.Size(23, 19);
             this.noBorderToolStripButton5.Text = "noBorderToolStripButton5";
-            this.noBorderToolStripButton5.Click += new System.EventHandler(this.noBorderToolStripButton5_Click);
+           // this.noBorderToolStripButton5.Click += new System.EventHandler(this.noBorderToolStripButton5_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1127,7 +1127,7 @@ namespace ExcelLikeUI
             toolTipInfo1.Header.Size = new System.Drawing.Size(20, 20);
             toolTipInfo1.Header.Text = "New";
             this.superToolTip1.SetToolTip(this.toolStripButton81, toolTipInfo1);
-            this.toolStripButton81.Click += new System.EventHandler(this.toolStripButton81_Click);
+           // this.toolStripButton81.Click += new System.EventHandler(this.toolStripButton81_Click);
             // 
             // toolStripButton82
             // 
@@ -1527,7 +1527,7 @@ namespace ExcelLikeUI
             this.toolStripButton6.Padding = new System.Windows.Forms.Padding(4);
             this.toolStripButton6.Size = new System.Drawing.Size(81, 25);
             this.toolStripButton6.Text = "Exit Excel";
-            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+           // this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton4
             // 
@@ -1726,7 +1726,7 @@ namespace ExcelLikeUI
             this.barItem1.ShowToolTipInPopUp = false;
             this.barItem1.SizeToFit = true;
             this.barItem1.Tooltip = "Cancel";
-            this.barItem1.Click += barItem1_Click;
+           // this.barItem1.Click += barItem1_Click;
             // 
             // barItem2
             // 
@@ -1734,7 +1734,7 @@ namespace ExcelLikeUI
             this.barItem2.ShowToolTipInPopUp = false;
             this.barItem2.SizeToFit = true;
             this.barItem2.Tooltip = "Enter";
-            this.barItem2.Click += barItem2_Click;
+           // this.barItem2.Click += barItem2_Click;
             // 
             // SapleBarIte
             // 
@@ -3835,32 +3835,7 @@ namespace ExcelLikeUI
             this.toolStripPanelItem28.Size = new System.Drawing.Size(52, 105);
             this.toolStripPanelItem28.Transparent = true;
             // 
-            // gridAwareTextBoxItem1
-            // 
-            this.gridAwareTextBoxItem1.BarName = "gridAwareTextBoxItem1";
-            this.gridAwareTextBoxItem1.CategoryIndex = 12;
-            this.gridAwareTextBoxItem1.CustomTextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridAwareTextBoxItem1.ID = "GridAwareTextBox1";
-            this.gridAwareTextBoxItem1.MinWidth = 200;
-            this.gridAwareTextBoxItem1.ShowToolTipInPopUp = false;
-            this.gridAwareTextBoxItem1.SizeToFit = true;
-            this.gridAwareTextBoxItem1.Text = "GridAwareTextBox1";
-            this.gridAwareTextBoxItem1.TextBoxValue = null;
-            this.gridAwareTextBoxItem1.Value = null;
-            // 
-            // gridAwareTextBoxItem2
-            // 
-            this.gridAwareTextBoxItem2.BarName = "gridAwareTextBoxItem2";
-            this.gridAwareTextBoxItem2.CategoryIndex = 12;
-            this.gridAwareTextBoxItem2.CustomTextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridAwareTextBoxItem2.ID = "GridAwareTextBox2";
-            this.gridAwareTextBoxItem2.MinWidth = 600;
-            this.gridAwareTextBoxItem2.ShowToolTipInPopUp = false;
-            this.gridAwareTextBoxItem2.SizeToFit = true;
-            this.gridAwareTextBoxItem2.Text = "GridAwareTextBox2";
-            this.gridAwareTextBoxItem2.TextBoxValue = null;
-            this.gridAwareTextBoxItem2.Value = null;
-            // 
+            
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3929,15 +3904,12 @@ namespace ExcelLikeUI
         private System.Windows.Forms.ToolStripButton toolStripButton46;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx25;
         private Syncfusion.Windows.Forms.Tools.ToolStripPanelItem toolStripPanelItem51;
-
-        internal ExcelLikeUI.GridAwareTextBoxBarItem gridAwareTextBoxItem1;
         internal WorkBook workBook = null;
         private int childWorkBookNumber = 1;
         private Syncfusion.Windows.Forms.Tools.ToolStripPanelItem toolStripPanelItem54;
         private System.Windows.Forms.ToolStripButton toolStripButton59;
         private System.Windows.Forms.ToolStripButton toolStripButton60;
         private System.Windows.Forms.ToolStripButton toolStripButton61;
-        internal GridAwareTextBoxBarItem gridAwareTextBoxItem2;
         private Syncfusion.Windows.Forms.Tools.XPMenus.XPToolBar xpToolBar1;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem SapleBarIte;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem barItem1;
@@ -4145,36 +4117,6 @@ namespace ExcelLikeUI
                 {
                     components.Dispose();
                 }
-                freezeToolStripMenuItem.Click -= new EventHandler(freezeToolStripMenuItem_Click);
-                toolStripBtnCut.Click -= new EventHandler(toolStripBtnCut_Click);
-                toolStripPanelItem15.Click -= new EventHandler(toolStripPanelItem15_Click);
-                toolStripBtnCopy.Click -= new EventHandler(toolStripBtnCopy_Click);
-                toolStripButton59.Click -= new EventHandler(toolStripButton_Click);
-                toolStripButton60.Click -= new EventHandler(toolStripButton_Click);
-                toolStripButton61.Click -= new EventHandler(toolStripButton_Click);
-                lAlignToolStripBtn.Click -= alignToolStripBtn_Click;
-                rAlignToolStripBtn.Click -= alignToolStripBtn_Click;
-                centerToolStripBtn.Click -= alignToolStripBtn_Click;
-                toolStripButton46.Click -= new EventHandler(toolStripButton46_Click);
-                toolStripButton45.Click -= new EventHandler(toolStripButton45_Click);
-                toolStripCheckBox1.CheckedChanged -= new EventHandler(toolStripCheckBox1_CheckedChanged);
-                toolStripCheckBox2.CheckedChanged -= new EventHandler(toolStripCheckBox2_CheckedChanged);
-                this.colorPickerFont.MouseUp -= colorPicker_MouseUp;
-                this.colorPickerBackground.MouseUp -= colorPickerBackground_MouseUp;
-                workBook._grid.CurrentCellActivated -= _grid_CurrentCellActivated;
-                toolStripFontfaceComboBox.SelectedIndexChanged -= new EventHandler(toolStripFontfaceComboBox_SelectedIndexChanged);
-                toolStripFontSizeComboBox.SelectedIndexChanged -= new EventHandler(toolStripFontSizeComboBox_SelectedIndexChanged);
-                toolStripButton71.Click -= new EventHandler(toolStripButton71_Click);
-                toolStripButton74.Click -= new EventHandler(toolStripButton74_Click);
-                underlineToolStripSplitBtn.Click -= new EventHandler(underlineToolStripSplitBtn_Click);
-                italicToolStripBtn.Click -= new EventHandler(italicToolStripBtn_Click);
-                boldToolstripBtn.Click -= new EventHandler(boldToolstripBtn_Click);
-                topBorderToolStripButton.Click -= topBorderToolStripButton_Click;
-                bottomBorderToolStripButton.Click -= bottomBorderToolStripButton_Click;
-                leftBorderToolStripButton.Click -= leftBorderToolStripButton_Click;
-                rightBorderToolStripButton.Click -= rightBorderToolStripButton_Click;
-                wrapTextToolStripButton.Click -= wrapTextToolStripButton_Click;
-                mergeCenterToolStripButton.Click -= mergeCenterToolStripButton_Click;
                 base.Dispose(disposing);
             }
         }
