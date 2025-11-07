@@ -157,7 +157,7 @@
         Q06RJsR3Em+0YWffdEw2Yt18OMFlaiYDR1UaX+mKmqOxxNcFgP0P+kXdSjlfI58AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral">
     <value>108</value>
   </metadata>
   <data name="toolStripStatusLabel1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1152,7 +1152,7 @@
         FVoAu7bLtgB7+J/s1A9MnE/fQtlT+WAFqgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="toolStripTabItem1.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem1.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="superAccelerator1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -1924,7 +1924,7 @@
         RK5CYII=
 </value>
   </data>
-  <metadata name="toolStripTabItem2.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem2.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="toolStripEx28.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -2397,7 +2397,7 @@
         h5MwAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="toolStripTabItem3.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem3.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="themesToolStripExt.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -2696,7 +2696,7 @@
         rowAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="toolStripTabItem4.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem4.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="toolStripEx11.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -2962,7 +2962,7 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="toolStripTabItem5.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem5.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="toolStripEx14.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -3325,7 +3325,7 @@
         SUVORK5CYII=
 </value>
   </data>
-  <metadata name="toolStripTabItem6.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem6.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="toolStripEx19.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -3657,7 +3657,7 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <metadata name="toolStripTabItem7.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="toolStripTabItem7.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=2.0.0.0, Culture=neutral">
     <value />
   </metadata>
   <metadata name="toolStripEx22.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
